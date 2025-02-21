@@ -34,6 +34,20 @@ describe('Login Test Suit', () => {
         cy.get(`div[class='swal-modal']`).contains(`This account is doesn't exist!, Try to sure of enetered username..`).should('be.visible')
     })
 
+    it.skip('LogIn with valid username and password', ()=>{
+        cy.get(`input[name='username']`).type('ezz')
+        cy.get(`input[name='password']`).type('1234')
+        cy.contains('LogIn').click()
+        cy.url().then(url => {
+            expect(url).to.be.equal('http://localhost:3000/')
+        })
+    })
+
+    it('click on Sign up link', ()=>{
+        cy.contains('a', 'Sign Up').click()
+        cy.get('.react-reveal').eq(1).find('input').its('length').should('be.eq', 4)
+    })
+
 
 
 })
